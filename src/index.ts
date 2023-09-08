@@ -6,7 +6,7 @@ import { createEmbedding } from './openai';
 
 const COSINE_WORKER_PATH = path.resolve(path.dirname(__filename), './cosine-similarity-worker');
 
-class VectorDBLite {
+class VectorDB {
     private worker: Worker;
     private requests: Requests;
     private documents: Documents;
@@ -97,5 +97,5 @@ class VectorDBLite {
 export {
     Embedding,
     Document,
-    VectorDBLite,
+    VectorDB,
 };

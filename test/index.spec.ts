@@ -1,9 +1,9 @@
-import { VectorDBLite } from '../dist';
+import { VectorDB } from '../dist';
 
 import { expect } from 'chai';
 
-describe('VectorDBLite', () => {
-    const db = new VectorDBLite();
+describe('VectorDB', () => {
+    const db = new VectorDB();
     const queryVector = Array(100).fill(0).map((_, i) => i)
 
     it('add 3 documents', async () => {

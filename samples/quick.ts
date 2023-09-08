@@ -1,7 +1,7 @@
-import { VectorDBLite } from '../dist'
+import { VectorDB } from '../dist'
 
 async function main() {
-    const db = new VectorDBLite();
+    const db = new VectorDB();
 
     console.log("Sample DB generating...")
 

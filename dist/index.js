@@ -12,13 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VectorDBLite = void 0;
+exports.VectorDB = void 0;
 const promises_1 = __importDefault(require("fs/promises"));
 const path_1 = __importDefault(require("path"));
 const worker_threads_1 = require("worker_threads");
 const openai_1 = require("./openai");
 const COSINE_WORKER_PATH = path_1.default.resolve(path_1.default.dirname(__filename), './cosine-similarity-worker');
-class VectorDBLite {
+class VectorDB {
     constructor() {
         this.worker = new worker_threads_1.Worker(COSINE_WORKER_PATH);
         this.requests = new Map();
@@ -97,4 +97,4 @@ class VectorDBLite {
         });
     }
 }
-exports.VectorDBLite = VectorDBLite;
+exports.VectorDB = VectorDB;

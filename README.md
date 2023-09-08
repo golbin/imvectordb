@@ -1,4 +1,4 @@
-# VectorDBLite.js
+# VectorDB.js
 
 Super simple in-memory vector DB for Node.js
 
@@ -7,7 +7,7 @@ You can use this to make prototypes or small products in Node.js fast.
 ## Installation
 
 ```sh
-npm install vectordb-lite
+npm install imvectordb
 ```
 
 ## Usage
@@ -15,9 +15,9 @@ npm install vectordb-lite
 Please check "samples" folder and types.
 
 ```typescript
-import { VectorDBLite } from 'vectordb-lite';
+import { VectorDB } from 'imvectordb';
 
-const db = new VectorDBLite();
+const db = new VectorDB();
 
 // Add a document
 db.add({

@@ -1,5 +1,5 @@
 import { Embedding, Document } from './types';
-declare class VectorDBLite {
+declare class VectorDB {
     private worker;
     private requests;
     private documents;
@@ -16,4 +16,4 @@ declare class VectorDBLite {
     queryText(text: string, top_k?: number): Promise<any>;
     terminateWorker(): Promise<void>;
 }
-export { Embedding, Document, VectorDBLite, };
+export { Embedding, Document, VectorDB, };

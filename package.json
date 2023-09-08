@@ -1,10 +1,10 @@
 {
-  "name": "vectordb-lite",
-  "version": "0.0.1",
+  "name": "imvectordb",
+  "version": "0.0.2",
   "description": "A super simple in-memory VectorDB",
   "author": "Jin Kim <golbin@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/golbin/vectordb-lite",
+  "homepage": "https://github.com/golbin/imvectordb",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exclude": [
@@ -19,6 +19,7 @@
     "test": "mocha -r ts-node/register 'test/**/*.spec.ts'"
   },
   "dependencies": {
+    "openai": "^4.5.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.5",
@@ -26,7 +27,6 @@
     "@types/node": "^20.4.1",
     "chai": "^4.3.7",
     "mocha": "^10.2.0",
-    "openai": "^4.5.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }

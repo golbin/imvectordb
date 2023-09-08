@@ -1,12 +1,12 @@
 import * as readline from 'readline/promises'
 import { stdin as input, stdout as output } from 'process'
 
-import { VectorDBLite } from '../dist'
+import { VectorDB } from '../dist'
 import { createEmbedding } from './openai'
 
 async function main() {
     console.log("Sample DB loading...")
-    const db = new VectorDBLite();
+    const db = new VectorDB();
     await db.loadFile('db.json')
 
     const rl = readline.createInterface({ input, output })

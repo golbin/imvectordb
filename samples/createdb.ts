@@ -1,9 +1,9 @@
 import fs from 'fs'
-import { VectorDBLite } from '../dist'
+import { VectorDB } from '../dist'
 import { createEmbedding } from './openai'
 
 async function createSampleDb(filename: string) {
-    const db = new VectorDBLite()
+    const db = new VectorDB()
     const dataBuffer = fs.readFileSync(filename)
     const documents = JSON.parse(dataBuffer.toString())
 
