@@ -1,4 +1,4 @@
-# VectorDB.js
+# In-memory VectorDB
 
 Super simple in-memory vector DB for Node.js
 
