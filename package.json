@@ -1,6 +1,6 @@
 {
   "name": "imvectordb",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A super simple in-memory VectorDB",
   "author": "Jin Kim <golbin@gmail.com>",
   "license": "MIT",
