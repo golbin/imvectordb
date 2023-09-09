@@ -1,5 +1,7 @@
 import { Embedding, Document } from './types';
 declare class VectorDB {
+    private worker;
+    private requests;
     private documents;
     constructor();
     addText(text: string): Promise<Document | undefined>;
@@ -11,5 +13,6 @@ declare class VectorDB {
     dumpFile(filename: string): Promise<void>;
     query(queryVector: Embedding, top_k?: number): Promise<any>;
     queryText(text: string, top_k?: number): Promise<any>;
+    terminateWorker(): Promise<void>;
 }
 export { Embedding, Document, VectorDB, };

@@ -8,14 +8,19 @@ type Document = {
 };
 type Documents = Map<string, Document>;
 type WorkerData = {
+    id: number;
     queryVector: Embedding;
     documents: Documents;
     top_k: number;
 };
 type WorkerResult = {
-    similarity: number;
-    document: Document;
-}[];
+    id: number;
+    results: {
+        index: number;
+        similarity: number;
+        document: Document;
+    }[];
+};
 type ResolveFunction = (value: unknown) => void;
 type Request = {
     resolve: ResolveFunction;

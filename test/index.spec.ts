@@ -42,4 +42,8 @@ describe('VectorDB', () => {
         expect(searchResults[0].document.id).to.equal("2");
         expect(searchResults[0].document.metadata.text).to.equal("second");
     });
+
+    it('terminate worker to finish test', async () => {
+        await db.terminateWorker();
+    });
 });

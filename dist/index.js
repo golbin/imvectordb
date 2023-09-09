@@ -14,12 +14,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VectorDB = void 0;
 const promises_1 = __importDefault(require("fs/promises"));
-const funthreads_1 = __importDefault(require("funthreads"));
+const worker_threads_1 = require("worker_threads");
 const openai_1 = require("./openai");
-const worker_1 = require("./worker");
+const worker_1 = __importDefault(require("./worker"));
 class VectorDB {
     constructor() {
+        this.worker = new worker_threads_1.Worker(worker_1.default.cosineSimilarity, { eval: true });
+        this.requests = new Map();
         this.documents = new Map();
+        this.worker.on('message', (data) => {
+            const { id, results } = data;
+            const { resolve } = this.requests.get(id) || {};
+            if (resolve) {
+                resolve(results);
+                this.requests.delete(id);
+            }
+        });
     }
     addText(text) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -66,20 +76,22 @@ class VectorDB {
         });
     }
     query(queryVector, top_k = 10) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const workerData = {
-                queryVector: queryVector,
-                documents: this.documents,
-                top_k: top_k
-            };
-            const results = yield (0, funthreads_1.default)(worker_1.searchVector, workerData);
-            return results;
+        const documents = this.documents;
+        return new Promise((resolve) => {
+            const id = (Math.floor(Math.random() * 10000) + 1);
+            this.requests.set(id, { resolve });
+            this.worker.postMessage({ id, queryVector, documents, top_k });
         });
     }
     queryText(text, top_k = 10) {
         return __awaiter(this, void 0, void 0, function* () {
             const embedding = yield (0, openai_1.createEmbedding)(text);
             return this.query(embedding, top_k);
+        });
+    }
+    terminateWorker() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.worker.terminate();
         });
     }
 }

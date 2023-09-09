@@ -1,10 +1,13 @@
-import { WorkerData, WorkerResult } from './types';
+// TODO: Improve the code into a file and import the file.
+// I tried to use import.meta.url but TypeScript is.. sucks in this case. :-(
+const worker = {
+    cosineSimilarity: `const { parentPort } = require('worker_threads');
 
-export function searchVector(data: WorkerData) {
-    const { queryVector, documents, top_k } = data;
-    const results = new Array() as WorkerResult
+parentPort?.on('message', (data) => {
+    const { id, queryVector, documents, top_k } = data;
+    const results = new Array()
 
-    const cosineSimilarity = (A: number[], B: number[]): number => {
+    const cosineSimilarity = (A, B ) => {
         let dotproduct = 0;
         let mA = 0;
         let mB = 0;
@@ -30,5 +33,9 @@ export function searchVector(data: WorkerData) {
 
     results.sort((a, b) => b.similarity - a.similarity);
 
-    return results.slice(0, top_k);
+    parentPort?.postMessage({ id, results: results.slice(0, top_k) });
+    parentPort?.close()
+});`
 }
+
+export default worker

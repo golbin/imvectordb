@@ -1,6 +1,6 @@
 {
   "name": "imvectordb",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A super simple in-memory VectorDB",
   "author": "Jin Kim <golbin@gmail.com>",
   "license": "MIT",
@@ -19,7 +19,6 @@
     "test": "mocha -r ts-node/esm  --extension ts 'test/**/*.spec.ts'"
   },
   "dependencies": {
-    "funthreads": "^2.0.2",
     "openai": "^4.5.0"
   },
   "devDependencies": {

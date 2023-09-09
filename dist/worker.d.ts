@@ -1,5 +1,4 @@
-import { WorkerData } from './types';
-export declare function searchVector(data: WorkerData): {
-    similarity: number;
-    document: import("./types").Document;
-}[];
+declare const worker: {
+    cosineSimilarity: string;
+};
+export default worker;
