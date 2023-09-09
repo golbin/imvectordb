@@ -9,20 +9,15 @@ type Document = {
 type Documents = Map<string, Document>;
 
 type WorkerData = {
-    id: number;
     queryVector: Embedding;
     documents: Documents;
     top_k: number;
 }
 
 type WorkerResult = {
-    id: number;
-    results: {
-        index: number,
-        similarity: number,
-        document: Document
-    }[];
-}
+    similarity: number,
+    document: Document
+}[];
 
 type ResolveFunction = (value: unknown) => void;
 

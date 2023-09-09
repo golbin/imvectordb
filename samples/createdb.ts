@@ -30,8 +30,6 @@ async function main() {
     console.log(`\nNumber of documents: ${db.size()}`)
 
     await db.dumpFile('db.json')
-
-    db.terminateWorker();
 }
 
 main()

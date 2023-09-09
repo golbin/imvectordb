@@ -51,9 +51,6 @@ db.del("1")
 // Dump and Load from file
 db.dumpFile("filename.json")
 db.loadFile("filename.json")
-
-// terminate worker to finish running process
-db.terminateWorker();
 ```
 
 ## License

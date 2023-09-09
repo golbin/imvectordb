@@ -16,9 +16,10 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "mocha -r ts-node/register 'test/**/*.spec.ts'"
+    "test": "mocha -r ts-node/esm  --extension ts 'test/**/*.spec.ts'"
   },
   "dependencies": {
+    "funthreads": "^2.0.2",
     "openai": "^4.5.0"
   },
   "devDependencies": {

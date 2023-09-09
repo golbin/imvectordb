@@ -1,31 +1,14 @@
 import fs from 'fs/promises'
-import path from 'path';
-import { Worker } from 'worker_threads';
-import { Embedding, Document, Documents, WorkerData, WorkerResult, Requests } from './types';
+import executeInThread from 'funthreads';
+import { Embedding, Document, Documents } from './types';
 import { createEmbedding } from './openai';
-
-const COSINE_WORKER_PATH = path.resolve(path.dirname(__filename), './cosine-similarity-worker');
+import { searchVector } from './worker';
 
 class VectorDB {
-    private worker: Worker;
-    private requests: Requests;
     private documents: Documents;
-    private nextRequestId: number;
 
     constructor() {
-        this.worker = new Worker(COSINE_WORKER_PATH);
-        this.requests = new Map();
         this.documents = new Map();
-        this.nextRequestId = 1;
-
-        this.worker.on('message', (data: WorkerResult) => {
-            const { id, results } = data;
-            const { resolve } = this.requests.get(id) || {};
-            if (resolve) {
-                resolve(results);
-                this.requests.delete(id);
-            }
-        });
     }
 
     async addText(text: string): Promise<Document | undefined> {
@@ -75,22 +58,21 @@ class VectorDB {
         await fs.writeFile(filename, jsonDump)
     }
 
-    query(queryVector: Embedding, top_k: number=10): Promise<any> {
-        const documents = this.documents;
-        return new Promise((resolve) => {
-            const id = this.nextRequestId++;
-            this.requests.set(id, { resolve });
-            this.worker.postMessage({ id, queryVector, documents, top_k } as WorkerData);
-        });
+    async query(queryVector: Embedding, top_k: number=10) {
+        const workerData = {
+            queryVector: queryVector,
+            documents: this.documents,
+            top_k: top_k
+        }
+
+        const results = await executeInThread(searchVector, workerData);
+
+        return results
     }
 
-    async queryText(text: string, top_k: number=10): Promise<any> {
+    async queryText(text: string, top_k: number=10) {
         const embedding = await createEmbedding(text)
         return this.query(embedding, top_k)
-    }
-
-    async terminateWorker() {
-        await this.worker.terminate();
     }
 }
 
