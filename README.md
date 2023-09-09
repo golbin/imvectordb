@@ -63,8 +63,8 @@ Use up to 10,000 documents; going over is not recommended. A few thousand is ide
 There's significant room for performance improvement. Patches and PRs are welcome.
 
 ```
-CPU: Apple M2
-Memory: 25769803776
+Machine: MackBook Air M2
+Dimensions: 1,536 (text-embedding-ada)
 
 ----------
 Search in 100 documents, 10 times.
