@@ -13,6 +13,6 @@ declare class VectorDB {
     dumpFile(filename: string): Promise<void>;
     query(queryVector: Embedding, top_k?: number): Promise<any>;
     queryText(text: string, top_k?: number): Promise<any>;
-    terminateWorker(): Promise<void>;
+    terminate(): Promise<void>;
 }
 export { Embedding, Document, VectorDB, };

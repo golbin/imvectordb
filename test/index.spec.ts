@@ -44,6 +44,6 @@ describe('VectorDB', () => {
     });
 
     it('terminate worker to finish test', async () => {
-        await db.terminateWorker();
+        await db.terminate();
     });
 });

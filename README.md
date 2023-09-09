@@ -51,6 +51,38 @@ db.del("1")
 // Dump and Load from file
 db.dumpFile("filename.json")
 db.loadFile("filename.json")
+
+// Make sure to terminate the Worker when the server is closed or no longer needed.
+db.terminate()
+```
+
+## Performance
+
+Use up to 10,000 documents; going over is not recommended. A few thousand is ideal.
+
+There's significant room for performance improvement. Patches and PRs are welcome.
+
+```
+CPU: Apple M2
+Memory: 25769803776
+
+----------
+Search in 100 documents, 10 times.
+----------
+Total: 57.577ms
+Average: 5.758ms
+
+----------
+Search in 1000 documents, 10 times.
+----------
+Total: 541.979ms
+Average: 54.198ms
+
+----------
+Search in 10000 documents, 10 times.
+----------
+Total: 13430.621ms
+Average: 1343.062ms
 ```
 
 ## License

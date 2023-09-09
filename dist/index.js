@@ -89,7 +89,7 @@ class VectorDB {
             return this.query(embedding, top_k);
         });
     }
-    terminateWorker() {
+    terminate() {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.worker.terminate();
         });

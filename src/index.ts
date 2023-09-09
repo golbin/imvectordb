@@ -87,7 +87,7 @@ class VectorDB {
         return this.query(embedding, top_k)
     }
 
-    async terminateWorker() {
+    async terminate() {
         await this.worker.terminate();
     }
 }

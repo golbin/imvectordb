@@ -36,7 +36,6 @@ parentPort?.on('message', (data) => {
     results.sort((a, b) => b.similarity - a.similarity);
 
     parentPort?.postMessage({ id, results: results.slice(0, top_k) });
-    parentPort?.close()
 });`
 };
 exports.default = worker;
