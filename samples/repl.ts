@@ -25,6 +25,7 @@ async function main() {
         }
     }
 
+    db.terminate();
     rl.close();
 }
 

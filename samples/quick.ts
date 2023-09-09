@@ -16,6 +16,8 @@ async function main() {
     console.log("\nquery: hi?")
     console.log(`# of results: ${searchResults.length}`)
     console.log(`the 1st result: ${searchResults[0].document.metadata.text}\n`)
+
+    db.terminate();
 }
 
 main()
