@@ -101,6 +101,11 @@ Total: 13430.621ms
 Average: 1343.062ms
 ```
 
+## Family
+
+- [LLM Chunk](https://github.com/golbin/llm-chunk)
+  - Super simple and easy-to-use text splitter for Node.js
+
 ## License
 
 MIT
